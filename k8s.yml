@@ -1,20 +1,5 @@
-apiVersion: extensions/v1beta1
-kind: Service
-metadata:
-  name: dblint-ui
-  labels:
-    app: dblint
-    tier: ui
-spec:
-  type: LoadBalancer
-  ports:
-  - port: 80
-    targetPort: http-server
-  selector:
-    app: dblint
-    tier: ui
----
 kind: Deployment
+apiVersion: extensions/v1beta1
 metadata:
   name: dblint-ui
   labels:
@@ -29,7 +14,7 @@ spec:
     spec:
       containers:
       - name: dblint-ui
-        # Replace [GCLOUD_PROJECT] with your project ID or use `make template`.
+        # Replace  with your project ID or use `make template`.
         image: us.gcr.io/[GCLOUD_PROJECT]/dblint-ui:[VERSION]
         # This setting makes nodes pull the docker image every time before
         # starting the pod. This is useful when debugging, but should be turned
@@ -38,7 +23,7 @@ spec:
         # The bookshelf process listens on port 8080 for web traffic by default.
         ports:
         - name: http-server
-          containerPort: 8080
+          containerPort: 10080
         env:
           - name: PROJECT_ID
             value: [GCLOUD_PROJECT]
