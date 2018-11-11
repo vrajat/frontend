@@ -11,7 +11,8 @@
     "start": "PORT=10080 react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "k8s": "VERSION=$VERSION GCLOUD_PROJECT=$GCLOUD_PROJECT sed \"s/\\[VERSION\\]/$VERSION/g;s/\\[GCLOUD_PROJECT\\]/$GCLOUD_PROJECT/g\" k8s.yml > k8s.tmpl.yml"
   },
   "eslintConfig": {
     "extends": "react-app"
