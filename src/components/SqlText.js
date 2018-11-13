@@ -16,10 +16,11 @@ class SqlText extends Component {
   }
 
   handleSubmit(event) {
+    var self = this
     const sql = this.state.value
     axios.post('http://dblint.com/api/dblint/pretty', sql)
     .then(function (response) {
-      this.setState({value: response});
+      self.setState({value: response});
     })
     .catch(function (error) {
       console.log(error)
