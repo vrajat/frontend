@@ -17,7 +17,7 @@ class SqlText extends Component {
 
   handleSubmit(event) {
     const sql = this.state.value
-    axios.post('api/dblint/pretty', {sql})
+    axios.post('http://dblint.com/api/dblint/pretty', {sql})
     .then(function (response) {
       this.setState({value: response});
     })
