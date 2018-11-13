@@ -1,0 +1,17 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: dblint-fanout-ingress
+  annotations:
+    kubernetes.io/ingress.global-static-ip-name: "dblint-static-ip"
+spec:
+  backend:
+    serviceName: dblint-ui
+    servicePort: 10080
+  rules:
+  - http:
+      paths:
+      - path: /api/*
+        backend:
+          serviceName: dblint-dw
+          servicePort: 8080

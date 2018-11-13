@@ -6,10 +6,12 @@ metadata:
     app: dblint
     tier: ui
 spec:
-  type: LoadBalancer
+  type: NodePort
   ports:
-  - port: 80
-    targetPort: http-server
+  - port: 10080
+    targetPort: 10080
+    protocol: "TCP"
+    name: "http"
   selector:
     app: dblint
     tier: ui
