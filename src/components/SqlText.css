@@ -1,0 +1,36 @@
+.sqltext input[type="text"] {
+    background-color: white;
+    border: 0;
+    color: black;
+    margin-bottom: 0.2em;
+    margin-right: 0.5em;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+    text-align: right;
+    width: 3em;
+}
+
+.sqltext textarea {
+    border: 0;
+    background-color: white;
+    border: 0;
+    font-family: Programma, monospace;
+    font-size: 100%;
+    font-weight: bold;
+    width: 800px;
+}
+
+.sqltext textarea::selection {
+    background-color: yellow;
+    color: black;
+}
+
+.sqltext input[type="submit"] {
+  background: #c94d46;
+  padding: 10px;
+  border: 1px solid #832420;
+  border-radius: 2px;
+  width: 200px;
+  color: #fff;
+  font-size: 18px;
+}
