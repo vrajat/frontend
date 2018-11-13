@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import './SqlText.css';
 
 class SqlText extends Component {
@@ -15,7 +16,14 @@ class SqlText extends Component {
   }
 
   handleSubmit(event) {
-    alert('A name was submitted: ' + this.state.value);
+    const sql = this.state.value
+    axios.post('api/dblint/pretty', {sql})
+    .then(function (response) {
+      this.setState({value: response});
+    })
+    .catch(function (error) {
+      console.log(error)
+    })
     event.preventDefault();
   }
 
