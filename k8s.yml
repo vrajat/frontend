@@ -20,7 +20,6 @@ spec:
         # starting the pod. This is useful when debugging, but should be turned
         # off in production.
         imagePullPolicy: Always
-        # The bookshelf process listens on port 8080 for web traffic by default.
         ports:
         - name: http-server
           containerPort: 10080
