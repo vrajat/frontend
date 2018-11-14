@@ -20,7 +20,8 @@ class SqlText extends Component {
     const sql = this.state.value
     axios.post('http://dblint.com/api/dblint/pretty', sql)
     .then(function (response) {
-      self.setState({value: response});
+      console.log(response)
+      self.setState({value: response.data});
     })
     .catch(function (error) {
       console.log(error)
