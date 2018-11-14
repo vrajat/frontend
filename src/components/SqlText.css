@@ -1,23 +1,11 @@
-.sqltext input[type="text"] {
-    background-color: white;
-    border: 0;
-    color: black;
-    margin-bottom: 0.2em;
-    margin-right: 0.5em;
-    padding-left: 0.5em;
-    padding-right: 0.5em;
-    text-align: right;
-    width: 3em;
-}
-
 .sqltext textarea {
-    border: 0;
+    width:  calc(80vw - 100px);
+    height: calc(80vh - 200px);
+    resize: none;
     background-color: white;
-    border: 0;
     font-family: Programma, monospace;
     font-size: 100%;
-    font-weight: bold;
-    width: 800px;
+    font-weight: normal;
 }
 
 .sqltext textarea::selection {
