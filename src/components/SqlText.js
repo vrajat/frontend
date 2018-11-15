@@ -6,7 +6,10 @@ import { Button, FormGroup, FormControl } from 'react-bootstrap';
 class SqlText extends Component {
   constructor(props) {
     super(props);
-    this.state = {value: ''};
+    this.state = {value: '',
+      action: "pretty",
+      url: window.location.protocol + "//" + window.location.host
+    };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -19,7 +22,8 @@ class SqlText extends Component {
   handleSubmit(event) {
     var self = this
     const sql = this.state.value
-    axios.post('http://dblint.com/api/dblint/pretty', sql)
+    const url = this.state.url + "/api/dblint/" + this.state.action
+    axios.post(url, sql)
     .then(function (response) {
       console.log(response)
       self.setState({value: response.data});
