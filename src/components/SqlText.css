@@ -1,8 +1,5 @@
 .sqltext textarea {
-    width:  calc(80vw - 100px);
-    height: calc(80vh - 200px);
     resize: none;
-    background-color: white;
     font-family: Programma, monospace;
     font-size: 100%;
     font-weight: normal;
@@ -11,14 +8,4 @@
 .sqltext textarea::selection {
     background-color: yellow;
     color: black;
-}
-
-.sqltext input[type="submit"] {
-  background: #c94d46;
-  padding: 10px;
-  border: 1px solid #832420;
-  border-radius: 2px;
-  width: 200px;
-  color: #fff;
-  font-size: 18px;
 }

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import './SqlText.css';
+import { Button, FormGroup, FormControl } from 'react-bootstrap';
 
 class SqlText extends Component {
   constructor(props) {
@@ -33,11 +34,15 @@ class SqlText extends Component {
     return (
         <div className="sqltext">
           <form onSubmit={this.handleSubmit}>
-            <textarea id="sqllint_source" rows="18" autoFocus spellCheck="false"
-                placeholder="-- Enter SQL here" value={this.state.value}
-                onChange={this.handleChange}/>
-            <p/>
-            <input type="submit" value="Pretty Print!" />
+            <FormGroup>
+              <FormControl componentClass="textarea" rows="18" autoFocus
+                spellCheck="false" resize="false"
+                  placeholder="-- Enter SQL here" value={this.state.value}
+                  onChange={this.handleChange}/>
+              <p/>
+              <Button onClick={this.handleSubmit} bsStyle="primary"
+                bsSize="large">Pretty Print!</Button>
+            </FormGroup>
           </form>
         </div>
     );
