@@ -19,10 +19,10 @@ spec:
         # This setting makes nodes pull the docker image every time before
         # starting the pod. This is useful when debugging, but should be turned
         # off in production.
-        imagePullPolicy: Always
+        imagePullPolicy: IfNotPresent
         ports:
         - name: http-server
-          containerPort: 10080
+          containerPort: 80
         env:
           - name: PROJECT_ID
             value: [GCLOUD_PROJECT]

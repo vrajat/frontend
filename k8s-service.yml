@@ -9,7 +9,7 @@ spec:
   type: NodePort
   ports:
   - port: 10080
-    targetPort: 10080
+    targetPort: http-server
     protocol: "TCP"
     name: "http"
   selector:
