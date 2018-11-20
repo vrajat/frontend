@@ -84,4 +84,8 @@ yarn-debug.log*
 yarn-error.log*
 
 k8s.tmpl.yml
+
+# cra-universal
 server-build/*
+dist/*
+
