@@ -4,13 +4,20 @@ RUN mkdir /usr/src/app
 WORKDIR /usr/src/app
 ENV PATH /usr/src/app/node_modules/.bin:$PATH
 COPY package.json /usr/src/app/package.json
-RUN npm install --silent
-RUN npm install react-scripts -g --silent
+RUN npm install -g yarn --silent
+RUN yarn install --silent
+RUN yarn global add react-scripts --silent
 COPY . /usr/src/app
-RUN npm run build
+RUN npx cra-universal build
+WORKDIR /usr/src/app/dist
+RUN yarn install --silent --production
 
 ### STAGE 2: Production Environment ###
-FROM nginx:1.13.12-alpine
-COPY --from=build /usr/src/app/build /usr/share/nginx/html
+FROM node:9.11.1
+WORKDIR /usr/src/app
+COPY --from=build /usr/src/app/dist/ /usr/src/app
 EXPOSE 80
-CMD ["nginx", "-g", "daemon off;"]
+ENV PORT 80
+ENV CRA_SERVER_PORT 80
+WORKDIR /usr/src/app
+CMD ["node", "server/bundle.js"]

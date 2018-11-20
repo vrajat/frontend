@@ -3,3 +3,12 @@ npm-debug.log
 .dockerignore
 Dockerfile
 .git
+build
+dist
+server-build
+.gitignore
+k8s-ingress.yml
+k8s-service.yml
+k8s.yml
+LICENSE
+README.md
