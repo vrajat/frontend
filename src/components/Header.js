@@ -5,7 +5,7 @@ class Header extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      url: window.location.protocol + "//" + window.location.host
+      url: "https://dblint.io"
     };
 
   }

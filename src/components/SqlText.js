@@ -8,7 +8,7 @@ class SqlText extends Component {
     super(props);
     this.state = {value: '',
       action: "pretty",
-      url: window.location.protocol + "//" + window.location.host
+      url: "https://dblint.io/"
     };
 
     this.handleChange = this.handleChange.bind(this);
