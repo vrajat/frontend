@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
+import Header from './Header';
+import Footer from './Footer';
 import axios from 'axios';
 import './SqlText.css';
 import { Button, FormGroup, FormControl } from 'react-bootstrap';
+import Helmet from 'react-helmet-async';
 
 class SqlText extends Component {
   constructor(props) {
@@ -36,6 +39,9 @@ class SqlText extends Component {
 
   render() {
     return (
+      <div>
+        <Helmet title="dblint.io | Sql Formatter" />
+        <Header/>
         <div className="sqltext">
           <form onSubmit={this.handleSubmit}>
             <FormGroup>
@@ -49,6 +55,8 @@ class SqlText extends Component {
             </FormGroup>
           </form>
         </div>
+        <Footer/>
+      </div>
     );
   }
 }
