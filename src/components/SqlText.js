@@ -11,7 +11,7 @@ class SqlText extends Component {
     super(props);
     this.state = {value: '',
       action: "pretty",
-      url: "https://dblint.io/"
+      url: "https://dblint.io"
     };
 
     this.handleChange = this.handleChange.bind(this);
