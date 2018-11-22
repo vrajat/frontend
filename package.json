@@ -1,6 +1,6 @@
 {
   "name": "dblint-ui",
-  "version": "0.5.1",
+  "version": "0.5.2",
   "private": true,
   "devDependencies": {
     "better-npm-run": "^0.1.1",
