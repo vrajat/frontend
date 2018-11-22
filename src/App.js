@@ -3,7 +3,6 @@ import { Route, Switch, Redirect } from 'react-router';
 import Helmet from 'react-helmet-async';
 
 import './App.css';
-import 'basscss/css/basscss.css';
 import 'font-awesome/css/font-awesome.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import SqlText from './components/SqlText';

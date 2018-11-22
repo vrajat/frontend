@@ -10,7 +10,7 @@ import { HelmetProvider } from 'react-helmet-async';
 import './index.css';
 import App from './App';
 import reducer from './reducers';
-import routes from './routes';
+import { routes } from './constants';
 
 // Grab the state from a global variable injected into the server-generated HTML
 const preloadedState = window.__PRELOADED_STATE__;

@@ -3,8 +3,8 @@ import thunk from 'redux-thunk';
 import { createReactAppExpress } from '@cra-express/core';
 import { getInitialData } from '@cra-express/router-prefetcher';
 import { HelmetProvider } from 'react-helmet-async';
+import { routes } from "../src/constants";
 
-import routes from '../src/routes';
 const path = require('path');
 const React = require('react');
 const { Provider } = require('react-redux');
@@ -19,6 +19,7 @@ let store;
 let AppClass = App;
 let serverData;
 let helmetCtx;
+
 const app = createReactAppExpress({
   clientBuildPath,
   universalRender: handleUniversalRender,
@@ -82,8 +83,8 @@ if (module.hot) {
     AppClass = App;
     console.log('✅ Server hot reloaded App');
   });
-  module.hot.accept('../src/routes', () => {
-    console.log('✅ Server hot reloaded routes');
+  module.hot.accept('../src/constants', () => {
+    console.log('✅ Server hot reloaded constants');
   });
 }
 
