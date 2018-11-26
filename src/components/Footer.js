@@ -1,26 +1,53 @@
 import React, { Component } from 'react';
-import { Grid, Nav, NavItem } from 'react-bootstrap';
+import { Container, Nav, Row, Col } from 'react-bootstrap';
+import FontAwesome from 'react-fontawesome';
+import { dialects } from '../constants/dialects';
 
 class Footer extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      martVersion: 'unknown',
+      feVersion: 'unknown'
+    }
+  }
+
   render() {
     return (
-      <Grid>
-        <Nav>
-          <NavItem
-            eventKey={1} href="https://github.com/vrajat/dblint-ui">
-            Github Project for UI
-          </NavItem>
-          <NavItem
-            eventKey={2}
-            href="https://github.com/vrajat/dblint">
-            GitHub Project for database tools
-          </NavItem>
-        </Nav>
-
-        <div className="text-center small copyright">
-          Copyright Dblint.io 2018
-        </div>
-      </Grid>
+      <Container>
+        <Row>
+          <Col>
+            <Nav className='flex-column'>
+              <label className="medium bold">Supported Databases:</label>
+                {
+                  Object.keys(dialects).map((key) => {
+                    return (
+                      <label key={key} className="small">{dialects[key]}</label>
+                    )
+                  })
+                }
+              </Nav>
+          </Col>
+          <Col bg="dark">
+            <Nav className='flex-column'>
+                <Nav.Link href="https://github.com/dblintio" className="small">
+                  <FontAwesome name='github' size='2x'/>
+                  Github Project
+                </Nav.Link>
+                <label className="small">
+                  Mart Version: {this.state.martVersion}
+                </label>
+                <label className="small">
+                  FE Version: {this.state.feVersion}
+                </label>
+                <label className="small copyright">
+                  Copyright Dblint.io 2018
+                </label>
+            </Nav>
+          </Col>
+        </Row>
+      </Container>
     );
   }
 }

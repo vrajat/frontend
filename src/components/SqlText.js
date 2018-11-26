@@ -3,7 +3,7 @@ import Header from './Header';
 import Footer from './Footer';
 import axios from 'axios';
 import './SqlText.css';
-import { Button, FormGroup, FormControl } from 'react-bootstrap';
+import { Button, Form } from 'react-bootstrap';
 import Helmet from 'react-helmet-async';
 import { connect } from 'react-redux';
 
@@ -15,8 +15,6 @@ class SqlText extends Component {
       url: "https://dblint.io",
       dialect: props.dialect
     };
-
-    console.log(this.state);
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -32,7 +30,6 @@ class SqlText extends Component {
       sql: this.state.value,
       dialect: this.state.dialect
     }
-    console.log(sql);
 
     const url = this.state.url + "/api/dblint/" + this.state.action
     axios.post(url, sql)
@@ -52,17 +49,17 @@ class SqlText extends Component {
         <Helmet title="dblint.io | Sql Formatter" />
         <Header/>
         <div className="sqltext">
-          <form onSubmit={this.handleSubmit}>
-            <FormGroup>
-              <FormControl componentClass="textarea" rows="18" autoFocus
+          <Form onSubmit={this.handleSubmit}>
+            <Form.Group>
+              <Form.Control as="textarea" rows="18" autoFocus
                 spellCheck="false" resize="false"
                   placeholder="-- Enter SQL here" value={this.state.value}
                   onChange={this.handleChange}/>
               <p/>
-              <Button onClick={this.handleSubmit} bsStyle="primary"
-                bsSize="large">Pretty Print!</Button>
-            </FormGroup>
-          </form>
+              <Button onClick={this.handleSubmit} variant="primary"
+                size="large">Pretty Print!</Button>
+            </Form.Group>
+          </Form>
         </div>
         <Footer/>
       </div>
