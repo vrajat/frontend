@@ -23,7 +23,12 @@ class Footer extends Component {
                 {
                   Object.keys(dialects).map((key) => {
                     return (
-                      <label key={key} className="small">{dialects[key]}</label>
+                      <Nav.Item>
+                      <Nav.Link href={"/" + dialects[key].toLowerCase()}
+                            eventkey={key} className="small">
+                          {dialects[key]}
+                      </Nav.Link>
+                      </Nav.Item>
                     )
                   })
                 }
