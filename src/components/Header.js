@@ -28,7 +28,9 @@ class Header extends Component {
                 {
                   Object.keys(dialects).map((key) => {
                     return (
-                      <NavDropdown.Item key={key}>{dialects[key]}</NavDropdown.Item>
+                      <NavDropdown.Item key={key} className="small bold capitalize">
+                        {dialects[key.toLowerCase()].name.toLowerCase()}
+                      </NavDropdown.Item>
                     )
                   })
                 }

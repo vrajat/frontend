@@ -1,5 +1,14 @@
 export const dialects = {
-  mysql: "MYSQL",
-  redshift: "REDSHIFT",
-  oracle: "ORACLE"
+  mysql: {
+    name: "MYSQL",
+    features: ["formatter", "digest"]
+  },
+  redshift: {
+    name: "REDSHIFT",
+    features: ["formatter", "digest"]
+  },
+  oracle:{
+    name: "ORACLE",
+    features: ["formatter", "digest"]
+  }
 };

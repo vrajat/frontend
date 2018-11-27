@@ -1,3 +1,4 @@
 export const features = {
-  formatter: "sql-formatter"
+  formatter: "sql-formatter",
+  digest: "sql-digest"
 };

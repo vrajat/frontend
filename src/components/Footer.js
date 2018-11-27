@@ -15,7 +15,7 @@ class Footer extends Component {
 
   render() {
     return (
-      <Container>
+      <Container fluid>
         <Row>
           <Col>
             <Nav className='flex-column'>
@@ -24,9 +24,9 @@ class Footer extends Component {
                   Object.keys(dialects).map((key) => {
                     return (
                       <Nav.Item>
-                      <Nav.Link href={"/" + dialects[key].toLowerCase()}
-                            eventkey={key} className="small">
-                          {dialects[key]}
+                      <Nav.Link href={"/" + dialects[key].name.toLowerCase()}
+                            eventkey={key} className="small capitalize">
+                          {dialects[key].name.toLowerCase()}
                       </Nav.Link>
                       </Nav.Item>
                     )
@@ -34,7 +34,8 @@ class Footer extends Component {
                 }
               </Nav>
           </Col>
-          <Col bg="dark">
+          <Col/>
+          <Col>
             <Nav className='flex-column'>
                 <Nav.Link href="https://github.com/dblintio" className="small">
                   <FontAwesome name='github' size='2x'/>
@@ -46,11 +47,17 @@ class Footer extends Component {
                 <label className="small">
                   FE Version: {this.state.feVersion}
                 </label>
-                <label className="small copyright">
-                  Copyright Dblint.io 2018
-                </label>
             </Nav>
           </Col>
+        </Row>
+        <Row>
+          <Col/>
+          <Col>
+            <label className="small copyright center">
+              Copyright Dblint.io 2018
+            </label>
+          </Col>
+          <Col/>
         </Row>
       </Container>
     );
