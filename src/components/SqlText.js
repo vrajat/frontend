@@ -5,16 +5,13 @@ import axios from 'axios';
 import './SqlText.css';
 
 import { Button, Form } from 'react-bootstrap';
-import Helmet from 'react-helmet-async';
 import { connect } from 'react-redux';
 
 class SqlText extends Component {
   constructor(props) {
     super(props);
     this.state = {value: '',
-      action: "pretty",
       url: "https://dblint.io",
-      dialect: props.dialect
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -29,10 +26,10 @@ class SqlText extends Component {
     var self = this
     const sql = {
       sql: this.state.value,
-      dialect: this.state.dialect
+      dialect: this.props.dialect
     }
 
-    const url = this.state.url + "/api/dblint/" + this.state.action
+    const url = this.state.url + "/api/dblint/" + this.props.action
     axios.post(url, sql)
     .then(function (response) {
       console.log(response)
@@ -47,7 +44,6 @@ class SqlText extends Component {
   render() {
     return (
       <div>
-        <Helmet title="dblint.io | Sql Formatter" />
         <div className="sqltext">
           <Form onSubmit={this.handleSubmit}>
             <Form.Group>
@@ -57,7 +53,7 @@ class SqlText extends Component {
                   onChange={this.handleChange}/>
               <p/>
               <Button onClick={this.handleSubmit} variant="primary"
-                size="large">Pretty Print!</Button>
+                size="large">{this.props.button}</Button>
             </Form.Group>
           </Form>
         </div>
@@ -66,10 +62,35 @@ class SqlText extends Component {
   }
 }
 
+function get_action(feature) {
+  switch(feature) {
+    case "sql-formatter":
+	return "pretty"
+    case "sql-digest":
+	return "digest"
+    default:
+	return "pretty"
+  }		  
+}
+
+function get_button_label(feature) {
+  console.log(feature);	
+  switch(feature) {
+    case "sql-formatter":
+	return "Pretty Print!"
+    case "sql-digest":
+	return "Generate Digest!"
+    default:
+	return "Pretty Print!"
+  }		  
+}
+
 function mapStateToProps(state) {
-  console.log(state);
   return {
-    dialect: state.app.dialect
+    dialect: state.dialect,
+    feature: state.feature,
+    action: get_action(state.feature),
+    button: get_button_label(state.feature)	  
   };
 }
 

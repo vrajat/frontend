@@ -1,13 +1,26 @@
 import { dialects, features} from "../constants";
 
-export const initialState = {
+const initialState = {
   dialect: dialects.mysql,
   feature: features.formatter
 };
 
-export default function appReducer(state = initialState, action) {
+function dialect(state = dialects.mysql, action) {
   switch (action.type) {
+    case 'SET_DIALECT':
+      return action.dialect
+    default:
+      return state
+  }
+}
+
+function feature(state = features.formatter, action) {
+  switch (action.type) {
+    case 'SET_FEATURE':
+      return action.feature
     default:
       return state;
   }
 }
+
+export { initialState, dialect, feature };

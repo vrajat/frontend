@@ -1,31 +1,29 @@
 import React, { Component } from 'react';
 import { Alert, Nav } from 'react-bootstrap';
 import { features } from '../constants/features';
+import {setFeature} from '../reducers/actions';
 
 import { connect } from 'react-redux';
 
 class SideNav extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {value: '',
-      dialect: props.dialect
-    };
+  
+  handleSelect(feature) {
+    this.props.onDbClick(features[feature]);
   }
-
   render() {
     return(
         <Nav className='flex-column'>
           <Alert variant='success'>
-            <Alert.Heading>{this.state.dialect.name}</Alert.Heading>
+            <Alert.Heading>{this.props.dialect.name}</Alert.Heading>
           </Alert>
             {
-              this.state.dialect.features.map((f, index) => {
+              this.props.dialect.features.map((f, index) => {
                 return (
                   <Nav.Item key={index}>
                     <Nav.Link
-                        href={"/" + this.state.dialect.name.toLowerCase()
-                            + "-" + features[f]}
-                          key={f} eventkey={f} className="small capitalize">
+                          key={index} eventkey={f} 
+                          onClick={() => this.handleSelect(f)}
+			className="small capitalize">
                         {f}
                       </Nav.Link>
                   </Nav.Item>
@@ -40,8 +38,17 @@ class SideNav extends Component {
 
 function mapStateToProps(state) {
   return {
-    dialect: state.app.dialect
+    dialect: state.dialect
   };
 }
 
-export default connect(mapStateToProps)(SideNav)
+const mapDispatchToProps = dispatch => {
+  return {
+    onDbClick: feature => {
+      dispatch(setFeature(feature))
+    }
+  }
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(SideNav)

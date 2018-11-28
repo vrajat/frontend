@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { Container, Nav, Row, Col } from 'react-bootstrap';
 import FontAwesome from 'react-fontawesome';
-import { dialects, default_url } from '../constants/dialects';
+import { dialects } from '../constants/dialects';
+import {setDialect} from '../reducers/actions';
+import { connect } from 'react-redux';
 
 class Footer extends Component {
   constructor(props) {
@@ -13,21 +15,28 @@ class Footer extends Component {
     }
   }
 
+  handleSelect(db) {
+    this.props.onDbClick(dialects[db]);
+  }
+
   render() {
     return (
       <Container fluid>
         <Row>
           <Col>
-            <Nav className='flex-column'>
+            <Nav className='flex-column' defaultActiveKey="mysql">
               <label className="medium bold">Supported Databases:</label>
                 {
                   Object.keys(dialects).map((key, index) => {
+		    console.log("-- " + key);	  
                     return (
                       <Nav.Item key={index}>
-                      <Nav.Link href={default_url(key)} key={index} db={key}
-                            eventkey={key} className="small capitalize active">
+                        <Nav.Link key={index}
+                            eventkey={key}
+                            onClick={() => this.handleSelect(key)}
+                            className="small capitalize">
                           {dialects[key].name.toLowerCase()}
-                      </Nav.Link>
+                        </Nav.Link>
                       </Nav.Item>
                     )
                   })
@@ -62,6 +71,14 @@ class Footer extends Component {
       </Container>
     );
   }
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    onDbClick: db => {
+      dispatch(setDialect(db))
+    }
+  }
 }
 
-export default Footer;
+export default connect(null, mapDispatchToProps)(Footer)

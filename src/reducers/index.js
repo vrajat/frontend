@@ -1,8 +1,6 @@
 import { combineReducers } from 'redux';
 
-import appReducer, {initialState} from './app';
+import {dialect, feature, initialState} from './app';
 
-export default combineReducers({
-  app: appReducer,
-});
+export default combineReducers({dialect, feature});
 export {initialState};

@@ -6,7 +6,6 @@ import './App.css';
 import 'font-awesome/css/font-awesome.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-import { routes } from './constants/routes';
 import {initialState} from './reducers';
 import {default_url} from './constants/dialects';
 
