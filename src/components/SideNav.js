@@ -19,9 +19,9 @@ class SideNav extends Component {
             <Alert.Heading>{this.state.dialect.name}</Alert.Heading>
           </Alert>
             {
-              this.state.dialect.features.map((f) => {
+              this.state.dialect.features.map((f, index) => {
                 return (
-                  <Nav.Item>
+                  <Nav.Item key={index}>
                     <Nav.Link
                         href={"/" + this.state.dialect.name.toLowerCase()
                             + "-" + features[f]}

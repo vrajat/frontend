@@ -21,11 +21,10 @@ class Footer extends Component {
             <Nav className='flex-column'>
               <label className="medium bold">Supported Databases:</label>
                 {
-                  Object.keys(dialects).map((key) => {
-                    console.log(default_url(key));
+                  Object.keys(dialects).map((key, index) => {
                     return (
-                      <Nav.Item>
-                      <Nav.Link href={default_url(key)}
+                      <Nav.Item key={index}>
+                      <Nav.Link href={default_url(key)} key={index} db={key}
                             eventkey={key} className="small capitalize active">
                           {dialects[key].name.toLowerCase()}
                       </Nav.Link>

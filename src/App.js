@@ -7,6 +7,8 @@ import 'font-awesome/css/font-awesome.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import { routes } from './constants/routes';
+import {initialState} from './reducers';
+import {default_url} from './constants/dialects';
 
 const meta = {
   title: 'dblint.io',
@@ -42,13 +44,13 @@ const App = ({ routes, initialData }) => {
       </Helmet>
       <Switch>
         {
-          routes.map((r) => {
+          routes.map((r, index) => {
             return (
-              <Route exact path={r.path} component={r.component}/>
+              <Route exact path={r.path} component={r.component} key={index}/>
             )
           })
         }
-          <Redirect exact from="/" to="/mysql-sql-formatter"/>
+          <Redirect exact from="/" to={default_url(initialState.dialect.name.toLowerCase())}/>
       </Switch>
     </div>
   );

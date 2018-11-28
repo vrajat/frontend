@@ -1,6 +1,6 @@
 import { dialects, features} from "../constants";
 
-const initialState = {
+export const initialState = {
   dialect: dialects.mysql,
   feature: features.formatter
 };
