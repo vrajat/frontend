@@ -5,12 +5,12 @@ import Helmet from 'react-helmet-async';
 import './App.css';
 import 'font-awesome/css/font-awesome.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import SqlText from './components/SqlText';
+
+import { routes } from './constants/routes';
 
 const meta = {
   title: 'dblint.io',
-  desc:
-    'DbLint: Database Engineer Tools'
+  desc: 'DbLint: Database Engineer Tools'
 };
 
 const App = ({ routes, initialData }) => {
@@ -41,8 +41,14 @@ const App = ({ routes, initialData }) => {
         <meta name="robots" content="index, follow" />
       </Helmet>
       <Switch>
-        <Route key="1" path="/sql-formatter" exact component={SqlText} />
-        <Redirect from="/" to="/sql-formatter"/>
+        {
+          routes.map((r) => {
+            return (
+              <Route exact path={r.path} component={r.component}/>
+            )
+          })
+        }
+          <Redirect exact from="/" to="/mysql-sql-formatter"/>
       </Switch>
     </div>
   );

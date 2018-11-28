@@ -1,13 +1,10 @@
 import React, { Component } from 'react';
-import Header from './Header';
-import Footer from './Footer';
-import SideNav from './SideNav';
 
 import axios from 'axios';
 
 import './SqlText.css';
 
-import { Button, Form, Container, Row, Col } from 'react-bootstrap';
+import { Button, Form } from 'react-bootstrap';
 import Helmet from 'react-helmet-async';
 import { connect } from 'react-redux';
 
@@ -51,12 +48,6 @@ class SqlText extends Component {
     return (
       <div>
         <Helmet title="dblint.io | Sql Formatter" />
-
-        <Container fluid>
-          <Row><Col><Header/></Col></Row>
-          <Row>
-            <Col sm={2}><SideNav/></Col>
-            <Col lg={true}>
         <div className="sqltext">
           <Form onSubmit={this.handleSubmit}>
             <Form.Group>
@@ -70,10 +61,6 @@ class SqlText extends Component {
             </Form.Group>
           </Form>
         </div>
-            </Col>
-            </Row>
-          <Row><Footer/></Row>
-        </Container>
       </div>
     );
   }

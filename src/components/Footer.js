@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Container, Nav, Row, Col } from 'react-bootstrap';
 import FontAwesome from 'react-fontawesome';
-import { dialects } from '../constants/dialects';
+import { dialects, default_url } from '../constants/dialects';
 
 class Footer extends Component {
   constructor(props) {
@@ -22,10 +22,11 @@ class Footer extends Component {
               <label className="medium bold">Supported Databases:</label>
                 {
                   Object.keys(dialects).map((key) => {
+                    console.log(default_url(key));
                     return (
                       <Nav.Item>
-                      <Nav.Link href={"/" + dialects[key].name.toLowerCase()}
-                            eventkey={key} className="small capitalize">
+                      <Nav.Link href={default_url(key)}
+                            eventkey={key} className="small capitalize active">
                           {dialects[key].name.toLowerCase()}
                       </Nav.Link>
                       </Nav.Item>
