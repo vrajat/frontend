@@ -29,13 +29,13 @@ class Header extends Component {
           <Navbar.Text color="#fff"> Tools for the Database Engineer</Navbar.Text>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav" className="justify-content-end">
-            <Nav className="mr-auto">
-              <DropdownButton title="Databases" id="collapsible-nav-dropdown">
+            <Nav>
+              <DropdownButton title="Databases" id="collapsible-nav-dropdown"
+                            onSelect={(key) => this.handleSelect(key)}>
                 {
                   Object.keys(dialects).map((key, index) => {
                     return (
                       <Dropdown.Item key={index} eventKey={key}
-                            onClick={() => this.handleSelect(key)}
                             className="small bold capitalize">
                         {dialects[key.toLowerCase()].name.toLowerCase()}
                       </Dropdown.Item>

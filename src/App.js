@@ -1,13 +1,12 @@
 import React from 'react';
-import { Route, Switch, Redirect } from 'react-router';
+import { Route, Switch } from 'react-router-dom';
 import Helmet from 'react-helmet-async';
 
 import './App.css';
 import 'font-awesome/css/font-awesome.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-import {initialState} from './reducers';
-import {default_url} from './constants/dialects';
+import DbApp from './components/DbApp'
 
 const meta = {
   title: 'dblint.io',
@@ -42,6 +41,7 @@ const App = ({ routes, initialData }) => {
         <meta name="robots" content="index, follow" />
       </Helmet>
       <Switch>
+        <Route exact path="/" component={DbApp}/>
         {
           routes.map((r, index) => {
             return (
@@ -49,7 +49,6 @@ const App = ({ routes, initialData }) => {
             )
           })
         }
-          <Redirect exact from="/" to={default_url(initialState.dialect.name.toLowerCase())}/>
       </Switch>
     </div>
   );
