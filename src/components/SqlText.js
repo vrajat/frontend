@@ -4,14 +4,15 @@ import axios from 'axios';
 
 import './SqlText.css';
 
-import { Button, Form } from 'react-bootstrap';
+import { Alert, Button, Form } from 'react-bootstrap';
 import { connect } from 'react-redux';
 
 class SqlText extends Component {
   constructor(props) {
     super(props);
     this.state = {value: '',
-      url: "https://dblint.io",
+      showAlert: false,
+      errorMessage: ''
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -23,13 +24,15 @@ class SqlText extends Component {
   }
 
   handleSubmit(event) {
-    var self = this
+    this.setState({showAlert: false});
+
+    var self = this;
     const sql = {
       sql: this.state.value,
       dialect: this.props.dialect.name
-    }
+    };
 
-    const url = "/api/dblint/" + this.props.feature.api;
+    const url = "http://sat/api/dblint/" + this.props.feature.api;
     axios({
       method: 'post',
       url: url,
@@ -38,20 +41,31 @@ class SqlText extends Component {
           'Content-Type': 'application/json',
           'Accept': 'application/json',
       }
-    })
-        .then(function (response) {
+    }).then(function (response) {
           console.log(response);
-          self.setState({value: response.data.sql});
+          response.data.success ?
+            self.setState({value: response.data.sql}) :
+            self.setState({showAlert: true, errorMessage:response.data.errorMessage});
         })
         .catch(function (error) {
-          console.log(error)
-        })
+          console.log(error);
+          self.setState({showAlert: true,
+            errorMessage:"Internal Error. Please contact Support"});
+        });
     event.preventDefault();
   }
 
   render() {
     return (
-          <Form onSubmit={this.handleSubmit} className="sqltext flex-fill">
+      <div className="sqltext flex-md-fill">
+        <Alert show={this.state.showAlert} dismissible variant="danger"
+          onClose={() => {this.setState({showAlert: false})}}>
+          <Alert.Heading>Error in processing the SQL query!</Alert.Heading>
+          <p>
+            {this.state.errorMessage}
+          </p>
+        </Alert>
+          <Form onSubmit={this.handleSubmit}>
             <Form.Group>
               <Form.Control as="textarea" rows="18" autoFocus
                 spellCheck="false" resize="false"
@@ -62,6 +76,7 @@ class SqlText extends Component {
                 size="large">{this.props.feature.actionString}</Button>
             </Form.Group>
           </Form>
+      </div>
     );
   }
 }
