@@ -32,7 +32,7 @@ class SqlText extends Component {
       dialect: this.props.dialect.name
     };
 
-    const url = "http://sat/api/dblint/" + this.props.feature.api;
+    const url = "/api/dblint/" + this.props.feature.api;
     axios({
       method: 'post',
       url: url,

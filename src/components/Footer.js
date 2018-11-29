@@ -1,22 +1,39 @@
 import React, { Component } from 'react';
 import { Container, Nav, Row, Col } from 'react-bootstrap';
 import FontAwesome from 'react-fontawesome';
-import { dialects } from '../constants/dialects';
+import { dialects, version } from '../constants/';
 import {setDialect} from '../reducers/actions';
 import { connect } from 'react-redux';
+import axios from 'axios';
 
 class Footer extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      martVersion: 'unknown',
-      feVersion: 'unknown'
+      martVersion: 'Not Available',
+      feVersion: version
     }
   }
 
   handleSelect(db) {
     this.props.onDbClick(dialects[db]);
+  }
+  componentDidMount() {
+    var self = this;
+    axios({
+      method: 'get',
+      url: "/api/dblint/version",
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+      }
+    }).then(function (response) {
+      console.log(response);
+      self.setState({martVersion: response.data.buildVersion});
+    }).catch(function (error) {
+      console.log(error);
+    });
   }
 
   render() {
