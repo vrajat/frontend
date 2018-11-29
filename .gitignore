@@ -89,3 +89,5 @@ k8s.tmpl.yml
 server-build/*
 dist/*
 
+# Intellij
+.idea
