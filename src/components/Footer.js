@@ -24,13 +24,15 @@ class Footer extends Component {
       <Container fluid>
         <Row>
           <Col>
-            <Nav className='flex-column' defaultActiveKey="mysql">
+	    <Row>
               <label className="medium bold">Supported Databases:</label>
+	    </Row>
+	    <Row>
+              <Nav defaultActiveKey="mysql">
                 {
                   Object.keys(dialects).map((key, index) => {
-		    console.log("-- " + key);	  
                     return (
-                      <Nav.Item key={index}>
+                      <Nav.Item key={index} className=".dialectLinks">
                         <Nav.Link key={index}
                             eventkey={key}
                             onClick={() => this.handleSelect(key)}
@@ -42,6 +44,7 @@ class Footer extends Component {
                   })
                 }
               </Nav>
+	    </Row>
           </Col>
           <Col/>
           <Col>

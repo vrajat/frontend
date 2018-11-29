@@ -18,12 +18,12 @@ class DbApp extends Component {
         <Container fluid>
           <Row><Col><Header/></Col></Row>
           <Row>
-            <Col sm={2}><SideNav/></Col>
-            <Col lg={true}>
-            <SqlText/>
+            <Col sm={1}><SideNav/></Col>
+            <Col >
+	    <Row><SqlText/></Row>
+	    <Row><Footer/></Row>
             </Col>
           </Row>
-          <Row><Footer/></Row>
         </Container>
       </div>
     )

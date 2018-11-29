@@ -1,0 +1,19 @@
+.sidenav {
+  padding: 0px;
+  height: 100%;
+}
+.sidenav-header {
+  color: #fff;	
+  font-family: Monaco;
+  font-size: 1vw;
+  font-weight: bold;
+  font-variant: small-caps;
+  float: left;
+}
+
+.sidenav-links {
+  float: right;
+  font-family: Monaco;
+  font-size: 0.8vw;
+  color: #fff;	
+}

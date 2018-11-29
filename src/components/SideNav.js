@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
-import { Alert, Nav } from 'react-bootstrap';
+import { Navbar, Nav } from 'react-bootstrap';
 import { features } from '../constants/features';
 import {setFeature} from '../reducers/actions';
 
 import { connect } from 'react-redux';
+
+import './SideNav.css';
 
 class SideNav extends Component {
   
@@ -12,10 +14,8 @@ class SideNav extends Component {
   }
   render() {
     return(
-        <Nav className='flex-column'>
-          <Alert variant='success'>
-            <Alert.Heading>{this.props.dialect.name}</Alert.Heading>
-          </Alert>
+        <Navbar className='flex-column sidenav' variant='dark' bg='dark'>
+        <label className='sidenav-header'>{this.props.dialect.name}</label>
             {
               this.props.dialect.features.map((f, index) => {
                 return (
@@ -23,14 +23,14 @@ class SideNav extends Component {
                     <Nav.Link
                           key={index} eventkey={f} 
                           onClick={() => this.handleSelect(f)}
-			className="small capitalize">
+			className="small capitalize sidenav-links">
                         {f}
                       </Nav.Link>
                   </Nav.Item>
                 )
               })
             }
-        </Nav>
+        </Navbar>
     )
   }
 }

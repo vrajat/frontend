@@ -43,9 +43,7 @@ class SqlText extends Component {
 
   render() {
     return (
-      <div>
-        <div className="sqltext">
-          <Form onSubmit={this.handleSubmit}>
+          <Form onSubmit={this.handleSubmit} className="sqltext flex-fill">
             <Form.Group>
               <Form.Control as="textarea" rows="18" autoFocus
                 spellCheck="false" resize="false"
@@ -56,8 +54,6 @@ class SqlText extends Component {
                 size="large">{this.props.button}</Button>
             </Form.Group>
           </Form>
-        </div>
-      </div>
     );
   }
 }

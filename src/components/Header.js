@@ -21,7 +21,7 @@ class Header extends Component {
   render() {
     return (
       <div>
-        <Navbar bg="dark" variant="dark" expand="md">
+        <Navbar bg="dark" variant="dark" className="flex-fill">
           <Navbar.Brand>
             <FontAwesome name="database"/>
             <a href={this.state.url}> DbLint</a>
