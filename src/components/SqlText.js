@@ -26,18 +26,26 @@ class SqlText extends Component {
     var self = this
     const sql = {
       sql: this.state.value,
-      dialect: this.props.dialect
+      dialect: this.props.dialect.name
     }
 
-    const url = this.state.url + "/api/dblint/" + this.props.feature.api
-    axios.post(url, sql)
-    .then(function (response) {
-      console.log(response)
-      self.setState({value: response.data.sql});
+    const url = "/api/dblint/" + this.props.feature.api;
+    axios({
+      method: 'post',
+      url: url,
+      data: sql,
+      headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+      }
     })
-    .catch(function (error) {
-      console.log(error)
-    })
+        .then(function (response) {
+          console.log(response);
+          self.setState({value: response.data.sql});
+        })
+        .catch(function (error) {
+          console.log(error)
+        })
     event.preventDefault();
   }
 
