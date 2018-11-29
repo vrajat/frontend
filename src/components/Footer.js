@@ -41,19 +41,19 @@ class Footer extends Component {
       <Container fluid>
         <Row>
           <Col>
-	    <Row>
+            <Row>
               <label className="medium bold">Supported Databases:</label>
-	    </Row>
-	    <Row>
+            </Row>
+            <Row>
               <Nav defaultActiveKey="mysql">
                 {
                   Object.keys(dialects).map((key, index) => {
                     return (
                       <Nav.Item key={index} className=".dialectLinks">
                         <Nav.Link key={index}
-                            eventkey={key}
-                            onClick={() => this.handleSelect(key)}
-                            className="small">
+                                  eventkey={key}
+                                  onClick={() => this.handleSelect(key)}
+                                  className="small">
                           {dialects[key].display}
                         </Nav.Link>
                       </Nav.Item>
@@ -61,21 +61,21 @@ class Footer extends Component {
                   })
                 }
               </Nav>
-	    </Row>
+            </Row>
           </Col>
           <Col/>
           <Col>
             <Nav className='flex-column'>
-                <Nav.Link href="https://github.com/dblintio" className="small">
-                  <FontAwesome name='github' size='2x'/>
-                  Github Project
-                </Nav.Link>
-                <label className="small">
-                  Mart Version: {this.state.martVersion}
-                </label>
-                <label className="small">
-                  FE Version: {this.state.feVersion}
-                </label>
+              <Nav.Link href="https://github.com/dblintio" className="small">
+                <FontAwesome name='github' size='2x'/>
+                Github Project
+              </Nav.Link>
+              <label className="small">
+                Mart Version: {this.state.martVersion}
+              </label>
+              <label className="small">
+                FrontEnd Version: {this.state.feVersion}
+              </label>
             </Nav>
           </Col>
         </Row>
@@ -91,7 +91,7 @@ class Footer extends Component {
       </Container>
     );
   }
-};
+}
 
 const mapDispatchToProps = dispatch => {
   return {
@@ -99,6 +99,6 @@ const mapDispatchToProps = dispatch => {
       dispatch(setDialect(db))
     }
   }
-}
+};
 
 export default connect(null, mapDispatchToProps)(Footer)

@@ -36,8 +36,8 @@ class Header extends Component {
                   Object.keys(dialects).map((key, index) => {
                     return (
                       <Dropdown.Item key={index} eventKey={key}
-                            className="small bold capitalize">
-                        {dialects[key.toLowerCase()].name.toLowerCase()}
+                            className="small bold">
+                        {dialects[key].display}
                       </Dropdown.Item>
                     )
                   })
