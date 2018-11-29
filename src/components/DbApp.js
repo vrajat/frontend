@@ -13,8 +13,8 @@ class DbApp extends Component {
     return(
       <div className="dbApp">
         <Helmet title={"dblint.io | " + 
-	    this.props.dialect.name + " " + 
-	    this.props.feature} />
+	    this.props.dialect.display + " " + 
+	    this.props.feature.display} />
         <Container fluid>
           <Row><Col><Header/></Col></Row>
           <Row>

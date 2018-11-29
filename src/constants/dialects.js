@@ -3,14 +3,17 @@ import { features } from './features';
 export const dialects = {
   mysql: {
     name: "MYSQL",
+    display: "MySQL",
     features: ["formatter", "digest"]
   },
   redshift: {
     name: "REDSHIFT",
+    display: "AWS Redshift",
     features: ["formatter", "digest"]
   },
   oracle:{
     name: "ORACLE",
+    display: "Oracle",
     features: ["formatter", "digest"]
   }
 };

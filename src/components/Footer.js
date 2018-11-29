@@ -36,8 +36,8 @@ class Footer extends Component {
                         <Nav.Link key={index}
                             eventkey={key}
                             onClick={() => this.handleSelect(key)}
-                            className="small capitalize">
-                          {dialects[key].name.toLowerCase()}
+                            className="small">
+                          {dialects[key].display}
                         </Nav.Link>
                       </Nav.Item>
                     )

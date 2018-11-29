@@ -29,7 +29,7 @@ class SqlText extends Component {
       dialect: this.props.dialect
     }
 
-    const url = this.state.url + "/api/dblint/" + this.props.action
+    const url = this.state.url + "/api/dblint/" + this.props.feature.api
     axios.post(url, sql)
     .then(function (response) {
       console.log(response)
@@ -51,42 +51,17 @@ class SqlText extends Component {
                   onChange={this.handleChange}/>
               <p/>
               <Button onClick={this.handleSubmit} variant="primary"
-                size="large">{this.props.button}</Button>
+                size="large">{this.props.feature.actionString}</Button>
             </Form.Group>
           </Form>
     );
   }
 }
 
-function get_action(feature) {
-  switch(feature) {
-    case "sql-formatter":
-	return "pretty"
-    case "sql-digest":
-	return "digest"
-    default:
-	return "pretty"
-  }		  
-}
-
-function get_button_label(feature) {
-  console.log(feature);	
-  switch(feature) {
-    case "sql-formatter":
-	return "Pretty Print!"
-    case "sql-digest":
-	return "Generate Digest!"
-    default:
-	return "Pretty Print!"
-  }		  
-}
-
 function mapStateToProps(state) {
   return {
     dialect: state.dialect,
     feature: state.feature,
-    action: get_action(state.feature),
-    button: get_button_label(state.feature)	  
   };
 }
 

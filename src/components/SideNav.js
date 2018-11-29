@@ -24,7 +24,7 @@ class SideNav extends Component {
                           key={index} eventkey={f} 
                           onClick={() => this.handleSelect(f)}
 			className="small capitalize sidenav-links">
-                        {f}
+                        {features[f].display}
                       </Nav.Link>
                   </Nav.Item>
                 )
