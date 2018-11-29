@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import { Navbar,Nav, NavDropdown } from 'react-bootstrap';
+import { Navbar, Nav , Dropdown, DropdownButton } from 'react-bootstrap';
 import { dialects } from '../constants/dialects';
+import {setDialect} from '../reducers/actions';
+import { connect } from 'react-redux';
 import FontAwesome from 'react-fontawesome';
 
 class Header extends Component {
@@ -12,29 +14,35 @@ class Header extends Component {
     };
   }
 
+  handleSelect(db) {
+    this.props.onDbClick(dialects[db]);
+  }
+
   render() {
     return (
       <div>
-        <Navbar bg="dark" variant="dark">
+        <Navbar bg="dark" variant="dark" expand="md">
           <Navbar.Brand>
             <FontAwesome name="database"/>
             <a href={this.state.url}> DbLint</a>
           </Navbar.Brand>
           <Navbar.Text color="#fff"> Tools for the Database Engineer</Navbar.Text>
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
-            <Nav>
-              <NavDropdown title="Databases" id="basic-nav-dropdown">
+          <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+          <Navbar.Collapse id="responsive-navbar-nav" className="justify-content-end">
+            <Nav className="mr-auto">
+              <DropdownButton title="Databases" id="collapsible-nav-dropdown">
                 {
-                  Object.keys(dialects).map((key) => {
+                  Object.keys(dialects).map((key, index) => {
                     return (
-                      <NavDropdown.Item key={key} className="small bold capitalize">
+                      <Dropdown.Item key={index} eventKey={key}
+                            onClick={() => this.handleSelect(key)}
+                            className="small bold capitalize">
                         {dialects[key.toLowerCase()].name.toLowerCase()}
-                      </NavDropdown.Item>
+                      </Dropdown.Item>
                     )
                   })
                 }
-              </NavDropdown>
+              </DropdownButton>
             </Nav>
           </Navbar.Collapse>
         </Navbar>
@@ -44,4 +52,12 @@ class Header extends Component {
 }
 
 
-export default (Header);
+const mapDispatchToProps = dispatch => {
+  return {
+    onDbClick: db => {
+      dispatch(setDialect(db))
+    }
+  }
+}
+
+export default connect(null, mapDispatchToProps)(Header)
