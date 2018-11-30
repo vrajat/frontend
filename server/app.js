@@ -76,6 +76,13 @@ function handleUniversalRender(req, res) {
       res.send(500);
     });
 }
+app.use(function(req, res, next) {
+  if (req.method === 'GET' && req.accepts('html') && !req.is('json') &&
+    !req.path.includes('.')) {
+    res.sendFile('index.html', { root });
+  } else next();
+});
+
 
 if (module.hot) {
   module.hot.accept('../src/App', () => {
