@@ -1,7 +1,9 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import {shallow} from 'enzyme/build';
 import App from './App';
 
-it('renders without crashing', () => {
-  expect(App).toBeDefined();
+
+it('mounts without crashing', () => {
+  const wrapper = shallow(<App />);
+  wrapper.unmount()
 });
