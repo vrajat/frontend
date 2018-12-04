@@ -3,7 +3,6 @@ import { Redirect, Route, Switch } from 'react-router-dom';
 import { Container } from 'reactstrap';
 
 import {
-  AppAside,
   AppBreadcrumb,
   AppFooter,
   AppHeader,
@@ -11,7 +10,6 @@ import {
   AppSidebarFooter,
   AppSidebarForm,
   AppSidebarHeader,
-  AppSidebarNav,
   AppSidebarMinimizer,
 } from '@coreui/react';
 
@@ -21,9 +19,8 @@ import SidebarNav from '../../components/SidebarNav';
 import { navigation, routes } from '../../constants';
 // navigation config
 
-const DefaultAside = React.lazy(() => import('./DefaultAside'));
-const DefaultFooter = React.lazy(() => import('./DefaultFooter'));
-const DefaultHeader = React.lazy(() => import('./DefaultHeader'));
+const DefaultFooter = React.lazy(() => import('../../components/Footer'));
+const DefaultHeader = React.lazy(() => import('../../components/Header'));
 
 class DefaultLayout extends Component {
 
@@ -75,11 +72,6 @@ class DefaultLayout extends Component {
               </Suspense>
             </Container>
           </main>
-          <AppAside fixed>
-            <Suspense fallback={this.loading()}>
-              <DefaultAside />
-            </Suspense>
-          </AppAside>
         </div>
         <AppFooter>
           <Suspense fallback={this.loading()}>
