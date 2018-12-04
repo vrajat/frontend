@@ -19,6 +19,8 @@ for (const k of Object.keys(dialects)) {
   for (const f of dialects[k].features) {
     r.children.push(
       {
+        dialect: dialects[k].name.toLowerCase(),
+        id: f,
         name: features[f].display,
         url: '/' + dialects[k].name.toLowerCase() + '/' + features[f].url,
         icon: features[f].icon
@@ -27,4 +29,3 @@ for (const k of Object.keys(dialects)) {
   }
   navigation.items.push(r);
 }
-console.log(navigation);

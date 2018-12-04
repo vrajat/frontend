@@ -18,9 +18,8 @@ import {
 import SidebarNav from '../../components/SidebarNav';
 
 // sidebar nav config
-import { navigation } from '../../constants';
+import { navigation, routes } from '../../constants';
 // navigation config
-import routes from '../../routes';
 
 const DefaultAside = React.lazy(() => import('./DefaultAside'));
 const DefaultFooter = React.lazy(() => import('./DefaultFooter'));
@@ -55,10 +54,11 @@ class DefaultLayout extends Component {
           </AppSidebar>
           <main className="main">
             <AppBreadcrumb appRoutes={routes}/>
-            <Container fluid>
+            <Container className="h-100">
               <Suspense fallback={this.loading()}>
                 <Switch>
                   {routes.map((route, idx) => {
+                    console.log(route);
                     return route.component ? (
                       <Route
                         key={idx}
@@ -70,7 +70,7 @@ class DefaultLayout extends Component {
                         )} />
                     ) : (null);
                   })}
-                  <Redirect from="/" to="/mysql/sql-formatter" />
+                  <Redirect from="/" to="/mysql" />
                 </Switch>
               </Suspense>
             </Container>
