@@ -5,6 +5,7 @@ import { dialects, version } from '../constants/';
 import {setDialect} from '../reducers/actions';
 import { connect } from 'react-redux';
 import axios from 'axios';
+import { Mixpanel } from '../lib/MixPanel';
 
 class Footer extends Component {
   constructor(props) {
@@ -18,6 +19,10 @@ class Footer extends Component {
 
   handleSelect(db) {
     this.props.onDbClick(dialects[db]);
+    Mixpanel.track("Choose Dialect", {
+      dialect: dialects[db],
+      source: "Footer"
+    })
   }
   componentDidMount() {
     var self = this;

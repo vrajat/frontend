@@ -4,6 +4,7 @@ import { features } from '../constants/features';
 import {setFeature} from '../reducers/actions';
 
 import { connect } from 'react-redux';
+import { Mixpanel } from "../lib/MixPanel";
 
 import './SideNav.css';
 
@@ -11,6 +12,10 @@ class SideNav extends Component {
   
   handleSelect(feature) {
     this.props.onDbClick(features[feature]);
+    Mixpanel.track("Choose Feature", {
+      dialect: this.props.dialect.name,
+      feature: features[feature].display
+    })
   }
   render() {
     return(

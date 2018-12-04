@@ -4,6 +4,7 @@ import { dialects } from '../constants/dialects';
 import {setDialect} from '../reducers/actions';
 import { connect } from 'react-redux';
 import FontAwesome from 'react-fontawesome';
+import { Mixpanel } from '../lib/MixPanel';
 
 class Header extends Component {
   constructor(props) {
@@ -16,6 +17,10 @@ class Header extends Component {
 
   handleSelect(db) {
     this.props.onDbClick(dialects[db]);
+    Mixpanel.track("Choose Dialect", {
+      dialect: dialects[db],
+      source: "Footer"
+    })
   }
 
   render() {
