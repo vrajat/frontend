@@ -1,9 +1,9 @@
 import SqlText from "../components/SqlText";
-import DefaultLayout from "../containers/DefaultLayout";
+import DbApp from "../components/DbApp";
 import {dialects} from "./dialects";
 
 export const routes = [
-  { path: '/', exact: true, name: 'Home', component: DefaultLayout },
+  { path: '/', exact: true, name: 'Home', component: DbApp },
 ];
 
 

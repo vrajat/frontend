@@ -13,16 +13,16 @@ import {
   AppSidebarMinimizer,
 } from '@coreui/react';
 
-import SidebarNav from '../../components/SidebarNav';
+import SidebarNav from './SidebarNav';
 
 // sidebar nav config
-import { navigation, routes } from '../../constants';
+import { navigation, routes } from '../constants';
 // navigation config
 
-const DefaultFooter = React.lazy(() => import('../../components/Footer'));
-const DefaultHeader = React.lazy(() => import('../../components/Header'));
+const DefaultFooter = React.lazy(() => import('./Footer'));
+const DefaultHeader = React.lazy(() => import('./Header'));
 
-class DefaultLayout extends Component {
+class DbApp extends Component {
 
   loading = () => <div className="animated fadeIn pt-1 text-center">Loading...</div>
 
@@ -83,4 +83,4 @@ class DefaultLayout extends Component {
   }
 }
 
-export default DefaultLayout;
+export default DbApp;
