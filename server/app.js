@@ -1,9 +1,9 @@
-import { getLoadableState } from 'loadable-components/server';
+import { getLoadableState } from '@loadable/server';
 import thunk from 'redux-thunk';
 import { createReactAppExpress } from '@cra-express/core';
 import { getInitialData } from '@cra-express/router-prefetcher';
 import { HelmetProvider } from 'react-helmet-async';
-import { navigation } from "../src/constants";
+import { routes } from "../src/constants";
 
 const path = require('path');
 const React = require('react');
@@ -54,14 +54,15 @@ function handleUniversalRender(req, res) {
   const context = {};
   helmetCtx = {};
   store = createStore(reducer, applyMiddleware(thunk));
-  return getInitialData(req, res, navigation)
+  console.log(new Error().stack);
+  return getInitialData(req, res, routes)
     .then(data => {
       serverData = data;
       const app = (
         <HelmetProvider context={helmetCtx}>
           <StaticRouter location={req.url} context={context}>
             <Provider store={store}>
-              <AppClass routes={navigation} initialData={data} />
+              <AppClass routes={routes} initialData={data} />
             </Provider>
           </StaticRouter>
         </HelmetProvider>

@@ -1,6 +1,7 @@
 import React, { Component, Suspense } from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import { Container } from 'reactstrap';
+import Helmet  from 'react-helmet-async';
 
 import {
   AppBreadcrumb,
@@ -11,7 +12,7 @@ import {
   AppSidebarForm,
   AppSidebarHeader,
   AppSidebarMinimizer,
-} from '@coreui/react';
+} from '../lib/coreui';
 
 import SidebarNav from './SidebarNav';
 
@@ -34,6 +35,7 @@ class DbApp extends Component {
   render() {
     return (
       <div className="app">
+        <Helmet title="dblint.io"/>
         <AppHeader fixed>
           <Suspense  fallback={this.loading()}>
             <DefaultHeader onLogout={e=>this.signOut(e)}/>
@@ -55,7 +57,7 @@ class DbApp extends Component {
               <Suspense fallback={this.loading()}>
                 <Switch>
                   {routes.map((route, idx) => {
-                    console.log(route);
+                    console.log("Route  no: " + idx);
                     return route.component ? (
                       <Route
                         key={idx}
@@ -68,6 +70,7 @@ class DbApp extends Component {
                     ) : (null);
                   })}
                   <Redirect from="/" to="/mysql" />
+                  {console.log(new Error().stack)}
                 </Switch>
               </Suspense>
             </Container>

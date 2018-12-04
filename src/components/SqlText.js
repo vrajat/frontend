@@ -5,7 +5,7 @@ import axios from 'axios';
 import './SqlText.css';
 import '../lib/MixPanel';
 
-import { Alert, Button, Col, Form, FormGroup, FormText, Input, Row } from "reactstrap";
+import { Alert, Button, Col, Form, FormGroup, Input } from "reactstrap";
 import { connect } from 'react-redux';
 import { Mixpanel } from "../lib/MixPanel";
 import { Route, Switch } from "react-router";

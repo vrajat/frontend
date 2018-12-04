@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Container, Row, Col } from "reactstrap";
 import PropTypes from 'prop-types';
 
-import { AppAsideToggler, AppHeaderDropdown, AppNavbarBrand, AppSidebarToggler } from '@coreui/react';
+import { AppNavbarBrand, AppSidebarToggler } from '../lib/coreui';
 import logo from '../assets/img/brand/logo.png'
 
 const propTypes = {

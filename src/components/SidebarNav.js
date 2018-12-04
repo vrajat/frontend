@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { NavItem, NavLink as RsNavLink } from 'reactstrap';
 import 'react-perfect-scrollbar/dist/css/styles.css';
 
-import { AppSidebarNav } from "@coreui/react";
+import { AppSidebarNav } from "../lib/coreui";
 import { features, dialects } from '../constants';
 import { setDialect, setFeature } from "../reducers/actions";
 
