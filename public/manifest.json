@@ -1,6 +1,6 @@
 {
-  "short_name": "CoreUI-React",
-  "name": "CoreUI-React sample",
+  "short_name": "DbLint",
+  "name": "DbLint: Database Engineer Tools",
   "icons": [
     {
       "src": "./assets/img/favicon.png",
@@ -8,7 +8,7 @@
       "type": "image/png"
     }
   ],
-  "start_url": ".",
+  "start_url": "./index.html",
   "display": "standalone",
   "theme_color": "#000000",
   "background_color": "#ffffff"
