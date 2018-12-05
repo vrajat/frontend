@@ -53,7 +53,7 @@ class DbApp extends Component {
           </AppSidebar>
           <main className="main">
             <AppBreadcrumb appRoutes={routes}/>
-            <Container fluid>
+            <Container className="h-75">
               <Suspense fallback={this.loading()}>
                 <Switch>
                   {routes.map((route, idx) => {
