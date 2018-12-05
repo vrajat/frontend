@@ -11,16 +11,14 @@ import {
   AppSidebarFooter,
   AppSidebarForm,
   AppSidebarHeader,
-  AppSidebarNav,
   AppSidebarMinimizer,
 } from '@coreui/react';
 
 import SidebarNav from '../../components/SidebarNav';
 
 // sidebar nav config
-import { navigation } from '../../constants';
+import { navigation, routes } from '../../constants';
 // navigation config
-import routes from '../../routes';
 
 const DefaultAside = React.lazy(() => import('./DefaultAside'));
 const DefaultFooter = React.lazy(() => import('./DefaultFooter'));
@@ -36,6 +34,8 @@ class DefaultLayout extends Component {
   }
 
   render() {
+    console.log(this.props);
+    console.log(navigation);
     return (
       <div className="app">
         <AppHeader fixed>
