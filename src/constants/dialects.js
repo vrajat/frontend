@@ -11,9 +11,9 @@ export const dialects = {
     display: "AWS Redshift",
     features: ["formatter", "digest"]
   },
-  oracle:{
-    name: "ORACLE",
-    display: "Oracle",
+  postgres:{
+    name: "POSTGRES",
+    display: "postgres",
     features: ["formatter", "digest"]
   }
 };

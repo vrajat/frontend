@@ -1,40 +1,87 @@
-import React, { Component } from 'react';
-import Header from './Header';
-import Footer from './Footer';
-import SideNav from './SideNav';
-import SqlText from './SqlText';
-import Helmet from 'react-helmet-async';
-import { connect } from 'react-redux';
+import React, { Component, Suspense } from 'react';
+import { Redirect, Route, Switch } from 'react-router-dom';
+import { Container } from 'reactstrap';
 
-import { Container, Row, Col } from 'react-bootstrap';
+import {
+  AppBreadcrumb,
+  AppFooter,
+  AppHeader,
+  AppSidebar,
+  AppSidebarFooter,
+  AppSidebarForm,
+  AppSidebarHeader,
+  AppSidebarMinimizer,
+} from '@coreui/react';
+
+import SidebarNav from './SidebarNav';
+
+// sidebar nav config
+import { navigation, routes } from '../constants';
+// navigation config
+
+const DefaultFooter = React.lazy(() => import('./Footer'));
+const DefaultHeader = React.lazy(() => import('./Header'));
 
 class DbApp extends Component {
+
+  loading = () => <div className="animated fadeIn pt-1 text-center">Loading...</div>
+
+  signOut(e) {
+    e.preventDefault()
+    this.props.history.push('/login')
+  }
+
   render() {
-    return(
-      <div className="dbApp">
-        <Helmet title={"dblint.io | " + 
-	    this.props.dialect.display + " " + 
-	    this.props.feature.display} />
-        <Container fluid>
-          <Row><Col><Header/></Col></Row>
-          <Row>
-            <Col sm={1}><SideNav/></Col>
-            <Col >
-	    <Row><SqlText/></Row>
-	    <Row><Footer/></Row>
-            </Col>
-          </Row>
-        </Container>
+    console.log(this.props);
+    console.log(navigation);
+    return (
+      <div className="app">
+        <AppHeader fixed>
+          <Suspense  fallback={this.loading()}>
+            <DefaultHeader onLogout={e=>this.signOut(e)}/>
+          </Suspense>
+        </AppHeader>
+        <div className="app-body">
+          <AppSidebar fixed display="lg">
+            <AppSidebarHeader />
+            <AppSidebarForm />
+            <Suspense>
+            <SidebarNav navConfig={navigation} {...this.props} />
+            </Suspense>
+            <AppSidebarFooter />
+            <AppSidebarMinimizer />
+          </AppSidebar>
+          <main className="main">
+            <AppBreadcrumb appRoutes={routes}/>
+            <Container className="h-75">
+              <Suspense fallback={this.loading()}>
+                <Switch>
+                  {routes.map((route, idx) => {
+                    return route.component ? (
+                      <Route
+                        key={idx}
+                        path={route.path}
+                        exact={route.exact}
+                        name={route.name}
+                        render={props => (
+                          <route.component {...props} />
+                        )} />
+                    ) : (null);
+                  })}
+                  <Redirect from="/" to="/mysql/sql-formatter" />
+                </Switch>
+              </Suspense>
+            </Container>
+          </main>
+        </div>
+        <AppFooter>
+          <Suspense fallback={this.loading()}>
+            <DefaultFooter />
+          </Suspense>
+        </AppFooter>
       </div>
-    )
+    );
   }
 }
 
-function mapStateToProps(state) {
-  return {
-    dialect: state.dialect,
-    feature: state.feature
-  };
-}
-
-export default connect(mapStateToProps)(DbApp)
+export default DbApp;

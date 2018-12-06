@@ -1,31 +1,28 @@
-import React, { Component } from 'react';
-import { Container, Nav, Row, Col } from 'react-bootstrap';
-import FontAwesome from 'react-fontawesome';
-import { dialects, version } from '../constants/';
-import {setDialect} from '../reducers/actions';
-import { connect } from 'react-redux';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import FontAwesome from "react-fontawesome";
+import { Button, Col, Container, Row } from "reactstrap";
+import { version } from "../constants";
 import axios from 'axios';
-import { Mixpanel } from '../lib/MixPanel';
+
+const propTypes = {
+  children: PropTypes.node
+};
+
+const defaultProps = {};
 
 class Footer extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      martVersion: 'Not Available',
+    this.versions = {
+      martVersion: "Unknown",
       feVersion: version
     }
   }
 
-  handleSelect(db) {
-    this.props.onDbClick(dialects[db]);
-    Mixpanel.track("Choose Dialect", {
-      dialect: dialects[db],
-      source: "Footer"
-    })
-  }
   componentDidMount() {
-    var self = this;
+    let self = this;
     axios({
       method: 'get',
       url: "/api/dblint/version",
@@ -34,7 +31,6 @@ class Footer extends Component {
         'Accept': 'application/json',
       }
     }).then(function (response) {
-      console.log(response);
       self.setState({martVersion: response.data.buildVersion});
     }).catch(function (error) {
       console.log(error);
@@ -43,67 +39,37 @@ class Footer extends Component {
 
   render() {
     return (
-      <Container fluid>
+      <Container>
         <Row>
-          <Col>
-            <Row>
-              <label className="medium bold">Supported Databases:</label>
-            </Row>
-            <Row>
-              <Nav defaultActiveKey="mysql">
-                {
-                  Object.keys(dialects).map((key, index) => {
-                    return (
-                      <Nav.Item key={index} className=".dialectLinks">
-                        <Nav.Link key={index}
-                                  eventkey={key}
-                                  onClick={() => this.handleSelect(key)}
-                                  className="small">
-                          {dialects[key].display}
-                        </Nav.Link>
-                      </Nav.Item>
-                    )
-                  })
-                }
-              </Nav>
-            </Row>
+          <Col sm={4}> &copy; 2018 <a href="https://dblint.io">Dblint</a></Col>
+          <Col className="ml-auto" sm={4}>
+            <Button color="danger" size="sm"
+                    href="https://github.com/dblintio/frontend/issues">
+              <FontAwesome name="bug"/>
+              Report Issues
+            </Button>
           </Col>
-          <Col/>
-          <Col>
-            <Nav className='flex-column'>
-              <Nav.Link href="https://github.com/dblintio" className="small">
-                <FontAwesome name='github' size='2x'/>
-                Github Project
-              </Nav.Link>
-              <label className="small">
-                Mart Version: {this.state.martVersion}
-              </label>
-              <label className="small">
-                FrontEnd Version: {this.state.feVersion}
-              </label>
-            </Nav>
+          <Col xs={2}>
+            <Button color="info" size="sm"
+                    href="https://github.com/dblintio/frontend/releases">
+              <FontAwesome name="github"/>
+              Frontend Version: {version}
+            </Button>
           </Col>
-        </Row>
-        <Row>
-          <Col/>
-          <Col>
-            <label className="small copyright center">
-              Copyright Dblint.io 2018
-            </label>
+          <Col xs={2}>
+            <Button color="info" size="sm"
+                    href="https://github.com/dblintio/mart/releases">
+              <FontAwesome name="github"/>
+              Mart Version: Unknown
+            </Button>
           </Col>
-          <Col/>
         </Row>
       </Container>
     );
   }
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    onDbClick: db => {
-      dispatch(setDialect(db))
-    }
-  }
-};
+Footer.propTypes = propTypes;
+Footer.defaultProps = defaultProps;
 
-export default connect(null, mapDispatchToProps)(Footer)
+export default Footer;
