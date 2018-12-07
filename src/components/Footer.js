@@ -53,14 +53,14 @@ class Footer extends Component {
             <Button color="info" size="sm"
                     href="https://github.com/dblintio/frontend/releases">
               <FontAwesome name="github"/>
-              Frontend Version: {this.state.feVersion}
+              Frontend Version: {this.versions.feVersion}
             </Button>
           </Col>
           <Col xs={2}>
             <Button color="info" size="sm"
                     href="https://github.com/dblintio/mart/releases">
               <FontAwesome name="github"/>
-              Mart Version: {this.state.martVersion}
+              Mart Version: {this.versions.martVersion}
             </Button>
           </Col>
         </Row>
