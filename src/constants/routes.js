@@ -1,4 +1,3 @@
-import SqlText from "../components/SqlText";
 import {dialects, features } from ".";
 
 export const routes = [];
@@ -10,7 +9,7 @@ for (const k of Object.keys(dialects)) {
       path: '/' + dialects[k].name.toLowerCase() + '/' + features[f].url,
       exact: true,
       name: dialects[k].display,
-      component: SqlText
+      component: features[f].component
     })
   }
 }

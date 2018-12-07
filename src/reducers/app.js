@@ -17,10 +17,18 @@ function dialect(state = dialects.mysql, action) {
 function feature(state = features.formatter, action) {
   switch (action.type) {
     case 'SET_FEATURE':
-      return action.feature
+      return action.feature;
     default:
       return state;
   }
 }
 
-export { initialState, dialect, feature };
+function uuid(state = null, action) {
+  switch (action.type) {
+    case 'SET_UUID':
+      return action.uuid;
+    default:
+      return state;
+  }
+}
+export { initialState, dialect, feature, uuid };

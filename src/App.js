@@ -13,8 +13,7 @@ const DefaultLayout = Loadable({
 });
 
 class App extends Component {
-
-  render() {
+ render() {
     return (
       <HashRouter>
           <Switch>

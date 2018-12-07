@@ -17,6 +17,9 @@ let actions = {
     set: (props) => {
       if (env_check) mixpanel.people.set(props);
     },
+    set_once: (props) => {
+      if (env_check) mixpanel.people.set_once(props);
+    },
   },
 };
 

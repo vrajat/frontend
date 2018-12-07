@@ -4,7 +4,7 @@ export const dialects = {
   mysql: {
     name: "MYSQL",
     display: "MySQL",
-    features: ["formatter", "digest"]
+    features: ["formatter", "digest", "slow_log"]
   },
   redshift: {
     name: "REDSHIFT",
@@ -13,7 +13,7 @@ export const dialects = {
   },
   postgres:{
     name: "POSTGRES",
-    display: "postgres",
+    display: "PostgreSQL",
     features: ["formatter", "digest"]
   }
 };

@@ -30,11 +30,12 @@ class SqlText extends Component {
   handleSubmit(event) {
     this.setState({ showAlert: false });
 
-    var self = this;
+    let self = this;
     const sql = {
       sql: this.state.value,
       dialect: this.props.dialect.name
     };
+    let featureDisplay = this.props.feature.display;
 
     const url = "/api/dblint/" + this.props.feature.api;
     axios({
@@ -52,19 +53,25 @@ class SqlText extends Component {
           showAlert: true, userError: true,
           errorMessage: response.data.errorMessage
         });
+      Mixpanel.track(sql.dialect, {
+        feature: featureDisplay,
+        success: response.data.success,
+        userError: true
+      });
+
     }).catch(function(error) {
       console.log(error);
       self.setState({
         showAlert: true, userError: false,
         errorMessage: "Internal Error. Please contact Support"
       });
+      Mixpanel.track(sql.dialect, {
+        feature: featureDisplay,
+        success: false,
+        userError: false
+      });
     });
 
-    Mixpanel.track(this.props.feature.name, {
-      dialect: this.props.dialect.name,
-      success: !this.state.showAlert,
-      userError: this.state.userError
-    });
     event.preventDefault();
   }
 

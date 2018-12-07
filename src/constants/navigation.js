@@ -8,7 +8,7 @@ export const navigation = {
 
 for (const k of Object.keys(dialects)) {
   let r = {
-    name: dialects[k].name,
+    name: dialects[k].display,
     url: '/' + dialects[k].name.toLowerCase(),
     icon: 'fa fa-database',
     children: [],

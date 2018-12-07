@@ -32,8 +32,6 @@ class DbApp extends Component {
   }
 
   render() {
-    console.log(this.props);
-    console.log(navigation);
     return (
       <div className="app">
         <AppHeader fixed>
