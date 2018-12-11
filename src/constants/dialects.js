@@ -12,7 +12,7 @@ export const dialects = {
     features: ["formatter", "digest"]
   },
   postgres:{
-    name: "POSTGRES",
+    name: "POSTGRESQL",
     display: "PostgreSQL",
     features: ["formatter", "digest"]
   }

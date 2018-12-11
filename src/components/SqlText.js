@@ -8,6 +8,7 @@ import "../lib/MixPanel";
 import { Alert, Button, Col, Form, FormGroup, Input } from "reactstrap";
 import { connect } from "react-redux";
 import { Mixpanel } from "../lib/MixPanel";
+import { Helmet } from "react-helmet";
 
 class SqlText extends Component {
   constructor(props) {
@@ -78,6 +79,9 @@ class SqlText extends Component {
   render() {
     return (
       <div className="h-100 sqltext">
+        <Helmet>
+          <title>dblint.io | {this.props.dialect.display} | {this.props.feature.display} </title>
+        </Helmet>
         <Alert isOpen={this.state.showAlert} color="danger"
                toggle={() => {
                  this.setState({ showAlert: false });

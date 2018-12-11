@@ -3,6 +3,7 @@ import { HashRouter, Route, Switch } from 'react-router-dom';
 // import { renderRoutes } from 'react-router-config';
 import Loadable from 'react-loadable';
 import './App.scss';
+import { Helmet} from "react-helmet";
 
 const loading = () => <div className="animated fadeIn pt-3 text-center">Loading...</div>;
 
@@ -15,11 +16,16 @@ const DefaultLayout = Loadable({
 class App extends Component {
  render() {
     return (
-      <HashRouter>
-          <Switch>
-            <Route path="/" name="Home" component={DefaultLayout} />
-          </Switch>
-      </HashRouter>
+      <div className="app">
+        <Helmet>
+          <title>dblint.io</title>
+        </Helmet>
+        <HashRouter>
+            <Switch>
+              <Route path="/" name="Home" component={DefaultLayout} />
+            </Switch>
+        </HashRouter>
+      </div>
     );
   }
 }

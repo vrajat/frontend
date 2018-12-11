@@ -15,7 +15,7 @@ class Footer extends Component {
   constructor(props) {
     super(props);
 
-    this.versions = {
+    this.state = {
       martVersion: "Unknown",
       feVersion: version
     }
@@ -53,14 +53,14 @@ class Footer extends Component {
             <Button color="info" size="sm"
                     href="https://github.com/dblintio/frontend/releases">
               <FontAwesome name="github"/>
-              Frontend Version: {this.versions.feVersion}
+              Frontend Version: {this.state.feVersion}
             </Button>
           </Col>
           <Col xs={2}>
             <Button color="info" size="sm"
                     href="https://github.com/dblintio/mart/releases">
               <FontAwesome name="github"/>
-              Mart Version: {this.versions.martVersion}
+              Mart Version: {this.state.martVersion}
             </Button>
           </Col>
         </Row>
